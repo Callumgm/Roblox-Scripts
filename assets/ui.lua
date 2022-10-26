@@ -2871,7 +2871,7 @@ function library:init()
 
                                 self.value = newValue;
                                 library.flags[self.flag] = newValue;
-                                self.objects.text.Text = slider.text .. ": " .. valueText .. tostring(slider.suffix);
+                                self.objects.text.Text = slider.text .. valueText .. tostring(slider.suffix);
                                 self.objects.text.ThemeColor = (self.min < 0 and newValue == 0 or newValue == self.min)  and (self.risky and 'Risky Text' or 'Option Text 3') or (self.risky and 'Risky Text Enabled' or 'Option Text 1');
     
                                 if not nocallback then
@@ -2901,7 +2901,7 @@ function library:init()
                             open = false;
                             values = {};
                             objects = {};
-                            text = data.text or "list";
+                            text = data.text or "";
                         }
     
                         table.insert(self.options, list);
@@ -2964,7 +2964,7 @@ function library:init()
                             objs.inputText = utility:Draw('Text', {
                                 Position = newUDim2(0,4,0,0);
                                 ThemeColor = 'Option Text 2';
-                                Text = list.text .. ": " .. 'none',
+                                Text = list.text .. 'none',
                                 Size = 13;
                                 Font = 2;
                                 ZIndex = z+5;
@@ -3022,13 +3022,13 @@ function library:init()
                                 self.selected = option;
                                 local text = typeof(option) == 'table' and (#option == 0 and "none" or table.concat(option, ', ')) or tostring(option);
                                 local label = self.objects.inputText
-                                label.Text = list.text .. ": " .. text;
+                                label.Text = list.text .. text;
                                 if label.TextBounds.X > self.objects.background.Object.Size.X - 10 then
                                     local split = text:split('');
                                     for i = 1,#split do
                                         label.Text = table.concat(split, '', 1, i)
                                         if label.TextBounds.X > self.objects.background.Object.Size.X - 10 then
-                                            label.Text = list.text .. ": " .. label.Text:sub(1,-6)..'...';
+                                            label.Text = list.text .. label.Text:sub(1,-6)..'...';
                                             break
                                         end
                                     end
