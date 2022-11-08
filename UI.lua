@@ -5,6 +5,15 @@ function library:tween(...) TweenService:Create(...):Play() end
 
 local uis = game:GetService("UserInputService")
 
+function library:Unload()
+    for i,v in pairs(self.UI:GetDescendants()) do
+        if v:IsA("GuiObject") then
+            v:Destroy()
+        end
+    end
+    self.UI:Destroy()
+end
+
 function library:create(Object, Properties, Parent)
     local Obj = Instance.new(Object)
 
